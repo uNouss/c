@@ -1,9 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int init(int tab[8]){
+    for(int i = 0; i < 8; i++){
+        tab[i] = 0;
+    }
+}
+
 int incr(int t[8]){
     int arret = -1;
-    for(int i = 0; i < 8 && arret != 0; i++){
+    for(int i = 7; i >= 0 && arret != 0; i--){
         if(t[i]){
             t[i] = 0;
         }
@@ -14,11 +20,6 @@ int incr(int t[8]){
     }
     return arret;
 }
-
-/*void usage(char *arg){
-    printf("%s ENTIER\n", arg);
-}*/
-
 
 void init_tab(int n, int tab[8]){
     int idx = 7;
@@ -33,8 +34,11 @@ void print_tab(int tab[8]){
     for(int i = 0; i < 8; i++){
         printf("%d", tab[i]);
     }
-    printf("\n");
 }
+
+/*void usage(char *arg){
+    printf("%s ENTIER\n", arg);
+}*/
 
 int main(int argc, char **argv){
     /*if(argc != 2 ){
@@ -42,15 +46,15 @@ int main(int argc, char **argv){
         return EXIT_FAILURE;
     }*/
     int tab[8];
-    for(int i = 0; i < 8; i++){
-        tab[i] = 0;
-    }
-
     for(int i = 0; i < 256; i++){
+        init(tab);
         init_tab(i, tab);
-        printf("%3d : ", i);
+        printf("Initiale: %3d : ", i);
         print_tab(tab);
-        //printf("Initiale: %3d", i, init_tab(i, tab));
+        printf(" , Calculé: %3d : ", i+1);
+        int deb = incr(tab);
+        print_tab(tab);
+        printf(" , debordement ? %2d\n", deb);
     }
     return EXIT_SUCCESS;
 }

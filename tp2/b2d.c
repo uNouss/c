@@ -42,7 +42,7 @@ int any2dec(int base, int entier){
         nombre += (entier%10)*puissance(base,i++);
         entier = entier/10;
     }
-    nombre += (entier%10)**puissance(base,i++);
+    nombre += (entier%10)*puissance(base,i++);
     return nombre;
 }
 
