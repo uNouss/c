@@ -1,0 +1,17 @@
+[m   dep:02 [m=> 0x400723 <main+79>:[;32m	call   0x40063d <check_authentification>[0m[0m[0m
+[m          |-- arg[0]: [;34m0xbffff2d1[0m --> 0x43004b4f ('OK')[0m
+[m    dep:03 [m=> 0x400644 <check_authentification+7>:[;32m	call   0x400540 <__x86.get_pc_thunk.bx>[0m[0m[0m
+[m           |-- arg[0]: 0x0 [0m
+[m           |-- arg[1]: [;34m0xbffff2a1[0m ("/home/unouss/Documents/Framadrive/iut/c/tmp/BOF")[0m
+[m           |-- arg[2]: [;31m0xb7e60449[0m (<handle_intel+9>:	add    edx,0x137bb7)[0m
+[m    dep:03 [m=> 0x400671 <check_authentification+52>:[;1;4;31m	call   0x4004b0 <strcpy@plt>[0m[0m[0m
+[m           |-- arg[0]: [;34m0xbfffefec[0m --> [;31m0xb7dde2f6[0m (<init_cacheinfo+262>:	test   eax,eax)[0m
+[m           |-- arg[1]: [;34m0xbffff2d1[0m --> 0x43004b4f ('OK')[0m
+[m    dep:03 [m=> 0x400687 <check_authentification+74>:[;32m	call   0x400480 <strcmp@plt>[0m[0m[0m
+[m           |-- arg[0]: [;34m0xbfffefec[0m --> [;31m0xb7dde2f6[0m (<init_cacheinfo+262>:	test   eax,eax)[0m
+[m           |-- arg[1]: [;32m0x400810[0m ("alphorm")[0m
+[m    dep:03 [m=> 0x4006a8 <check_authentification+107>:[;32m	call   0x400480 <strcmp@plt>[0m[0m[0m
+[m           |-- arg[0]: [;34m0xbfffefec[0m --> [;31m0xb7dde2f6[0m (<init_cacheinfo+262>:	test   eax,eax)[0m
+[m           |-- arg[1]: [;32m0x400818[0m ("kondah")[0m
+[m   dep:02 [m=> 0x40074d <main+121>:[;32m	call   0x4004c0 <puts@plt>[0m[0m[0m
+[m          |-- arg[0]: [;32m0x40084a[0m ("Access Denied")[0m

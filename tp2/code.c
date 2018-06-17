@@ -15,6 +15,11 @@ void decode(char *s, char key){
     }
 }
 
+unsigned char next_key(unsigned char x){
+    return (x << 1) | ( n>> 7);
+}
+
+
 void usage(char *s){
     printf("USAGE: %s [CAR_KEY]\n", s);
 }
@@ -35,19 +40,12 @@ int main(int argc, char **argv){
     printf("=======CODAGE======\n%s",  sortie);
     decode(sortie, key);
     printf("=====DECODAGE=======\n%s",  sortie);
-    int ci = 0x83;
+    unsigned char  ci = 0x83;
     //unsigned flag = (ci & 0x01 ) ? 0x0F: 0;
     //ci >>= 1;
-    unsigned flag = (ci & 0xF0 ) ? 1: 0;
+    unsigned char flag = (ci & 0xF0 ) ? 1: 0;
     ci <<= 1;
     ci |= flag;
     printf("%d rcl %d\n", 0xc1, ci);
     return EXIT_SUCCESS;
 }
-/*
- * 11000001
- * 1100000100
- * 110000010
- * 100000111
- * 10000011
- */
