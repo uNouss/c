@@ -12,7 +12,7 @@ typedef cell* list;
 
 int head(list l){
   /* renvoie la tête de la liste l */
-    return l->val; // *(l.first.val);
+    return l->val; // *(l.val);
 }
 
 list tail(list l){
@@ -31,20 +31,22 @@ list cons(int v, list l){
 
 int length(list l){
     /* renvoie le longueur de la liste l */
-    int size = 0;
+    /*int size = 0;
     while(l != NULL){
         size++;
         l = tail(l);
     }
-    return size;
+    return size;*/
+  if(l == NULL) return 0;
+  return 1+length(tail(l));
 }
 
 void print_list(list l){
     /* affiche la liste l */
     printf("[");
     while(l != NULL){
-        printf("%d ", l->val);
-        l = tail(l);
+      printf("%d ", head(l));
+      l = tail(l);
     }
     printf("]\n");
 }
@@ -52,12 +54,8 @@ void print_list(list l){
 list append(list l1, list l2){
     //renvoie la liste qui est la concaténation des listes l1 et l2
     //on se positionne à la fin de la première list
-    list l = l1;
-    while(l1->next != NULL){
-        l1 = l1->next;
-    }
-    l1->next = l2;
-    return l;
+  if(l1 == NULL) return l2;
+  return cons(head(l1),append(tail(l1), l2));
 }
 
 list reverse(list l){
@@ -72,7 +70,7 @@ list reverse(list l){
 
 list copy(list l){
     // renvoie une copie de la liste passée en paramètre
-    list r = NULL; list p = NULL;
+    /*list r = NULL; list p = NULL;
     int i = 0;
     while( l != NULL ){
         list n = cons(l->val, NULL);
@@ -81,12 +79,14 @@ list copy(list l){
         if( r != NULL )
             r = append(r, n);
     }
-    return r;
+    return r;*/
+  if(l == NULL) return l;
+  return cons(head(l), copy(tail(l)));
 }
 
 list insert(int v, list l){
     /* insert v dans l à la première position suivie d'une valeur plus grande que v */
-    list n = cons(v, NULL);
+    /*list n = cons(v, NULL);
     list first = NULL;
     list prec = NULL;
     while( l != NULL ){
@@ -98,19 +98,26 @@ list insert(int v, list l){
         prec = l;
         l = tail(l);
         if(first == NULL) first = prec;
-    }
+	}*/
+  if(l == NULL || v <= head(l)) return cons(v, l);
+  else{
+    l->next = insert(v, tail(l));
+    return l;
+  }
 }
 
 list tri_insertion(list l){
       /* tri par insertion */
-    if( l == NULL) return NULL;
-    list r = cons(l->val, NULL);
+  /*if( l == NULL) return NULL;
+    list r = cons(head(l), NULL);
 
-    while(l->next != NULL){
-        l = l->next;
-        r = insert(l->val, r);
+    while(tail(l) != NULL){
+      l = tail(l);
+      r = insert(head(l), r);
     }
-    return r;
+    return r;*/
+  if(l == NULL) return l;
+  else insert(head(l), tri_insertion(tail(l)));
 }
 
 int main(int argc, char **argv){
@@ -142,7 +149,15 @@ int main(int argc, char **argv){
     printf("liste copy = ");print_list(copy_list);
 
     l = insert(8,l);
-    printf("liste apres insert = ");print_list(l);
+    printf("liste apres insert [size=%d] = ", length(l));print_list(l);
+
+    l = insert(20,l);
+    printf("liste apres insert [size=%d] = ", length(l));print_list(l);
+
+    l = insert(30,l);
+    printf("liste apres insert [size=%d] = ", length(l));print_list(l);
+ 
+    printf("liste trié ", length(l));print_list(tri_insertion(l));
 
     return 0;
 }
