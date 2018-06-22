@@ -2,14 +2,18 @@
 #include <stdlib.h>
 #include <string.h>
 
-int check_authentification(char * pwd){
-    int auth_flag = 0;
+typedef enum{
+  false,true
+}bool;
+
+bool check_authentification(char * pwd){
+    int auth_flag = false;
     char pwd_buffer[16];
 
     strcpy(pwd_buffer, pwd);
 
-    if(strcmp(pwd_buffer, "alphorm") == 0) auth_flag = 1;
-    if(strcmp(pwd_buffer, "kondah") == 0) auth_flag = 1;
+    if(strcmp(pwd_buffer, "alphorm") == 0) auth_flag = true;
+    if(strcmp(pwd_buffer, "kondah") == 0) auth_flag = true;
     return auth_flag;
 }
 
